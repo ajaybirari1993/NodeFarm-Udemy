@@ -5,17 +5,17 @@ const {
   getTourById,
   updateTourById,
   deleteTourById,
-  checkValidId,
-  checkValidBody,
+  aliasTopTours,
 } = require('../controller/tourController');
 
 const router = express.Router();
 
 // Check for valid id
-router.param('id', checkValidId);
+// router.param('id', checkValidId);
 
 // Tour Routes
-router.route('/').get(getAllTour).post(checkValidBody, createNewTour);
+router.get('/top-5-cheap', aliasTopTours, getAllTour);
+router.route('/').get(getAllTour).post(createNewTour);
 router
   .route('/:id')
   .get(getTourById)
